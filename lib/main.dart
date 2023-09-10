@@ -28,6 +28,7 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Profile"),
+        centerTitle: true,
       ),
       body: Center(
         child: Column(
@@ -37,11 +38,14 @@ class MyHomePage extends StatelessWidget {
               backgroundColor: Colors.green,
               radius: 30,
               child: IconButton(
-                padding: EdgeInsets.zero,
-                icon: const Icon(Icons.person),
+                padding: const EdgeInsets.all(0.0),
+                icon: const Icon(
+                  Icons.person,
+                  size: 50.0,
+                ),
                 color: Colors.white,
                 onPressed: () {},
-                iconSize: 25.0,
+                //iconSize: 25.0,
               ),
             ),
             const Text(
