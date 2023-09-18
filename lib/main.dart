@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Live Test',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -27,33 +28,96 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Profile"),
+        title: const Text("My Shopping List"),
         centerTitle: true,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.all(10.0),
+            child: Icon(
+              Icons.shopping_cart_sharp,
+              size: 25,
+            ),
+          ),
+        ],
       ),
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            CircleAvatar(
-              backgroundColor: Colors.green,
-              radius: 30,
-              child: IconButton(
-                padding: const EdgeInsets.all(0.0),
-                icon: const Icon(
-                  Icons.person,
-                  size: 50.0,
+        child: Container(
+          padding: const EdgeInsets.all(10.0),
+          child: Column(
+            //mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              ListTile(
+                title: Text(
+                  "Apples",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
                 ),
-                color: Colors.white,
-                onPressed: () {},
-                //iconSize: 25.0,
+                leading: Icon(
+                  Icons.apple,
+                  size: 30,
+                ),
               ),
-            ),
-            const Text(
-              'Jhon Doe',
-              style: TextStyle(fontSize: 25),
-            ),
-            const Text("Flutter Batch 4"),
-          ],
+              Divider(
+                thickness: 2,
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  "Watch",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+                leading: Icon(
+                  Icons.watch,
+                  size: 30,
+                ),
+              ),
+              Divider(
+                thickness: 2,
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  "Face Mask",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+                leading: Icon(
+                  Icons.masks,
+                  size: 30,
+                ),
+              ),
+              Divider(
+                thickness: 2,
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  "School Bag",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+                leading: Icon(
+                  Icons.shopping_bag_sharp,
+                  size: 30,
+                ),
+              ),
+              Divider(
+                thickness: 2,
+                height: 10,
+              ),
+              ListTile(
+                title: Text(
+                  "Books",
+                  style: TextStyle(color: Colors.black, fontSize: 20),
+                ),
+                leading: Icon(
+                  Icons.book,
+                  size: 30,
+                ),
+              ),
+              Divider(
+                thickness: 2,
+                height: 10,
+              ),
+            ],
+          ),
         ),
       ),
     );
