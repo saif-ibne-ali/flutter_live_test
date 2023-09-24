@@ -39,7 +39,9 @@ class _MyHomePageState extends State<MyHomePage> {
 
   void _decrementCounter() {
     setState(() {
-      _counter--;
+      if (_counter >= 1) {
+        _counter--;
+      }
     });
   }
 
@@ -68,7 +70,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ElevatedButton(
                       onPressed: () {
                         _incrementCounter();
-                        if (_counter >= 5) {}
+                        if (_counter >= 5) {
+                          showDialog(
+                              barrierDismissible: false,
+                              context: context,
+                              builder: (context) {
+                                return AlertDialog(
+                                  title: Text("Button pressed $_counter times"),
+                                  actions: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        child: const Text("Close"))
+                                  ],
+                                );
+                              });
+                        }
                       },
                       child: const Icon(Icons.add)),
                 ),
