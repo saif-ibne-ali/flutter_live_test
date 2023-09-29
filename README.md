@@ -1,9 +1,14 @@
-# module7_live_test
+# module8_live_test
 
 ## Question
-Create a Flutter screen that initially displays a count of 0. The screen should have two buttons: one labeled "+" and the other labeled "-".
-![Alt text](Screenshot_20230925-000339_flutter_live_test.png) ![Alt text](Screenshot_20230925-000345_flutter_live_test.png) ![Alt text](Screenshot_20230925-000352_flutter_live_test.png)
-### Requirements:
-Tapping the "+" button should increase the count by 1.
-Tapping the "-" button should decrease the count by 1, but the count should not go below 0.
-If the count reaches 5 or more, a dialog should appear with the message: "Button pressed {count} times."
+
+Create a dummy image feed that adjusts its layout based on the device's orientation. 
+
+1. The feed should display multiple thumbnail images in list format for portrait and grid format in landscape.
+
+2. Use a Card or Container type widget to hold the thumbnail image (Can use image/images of your choice, they will be 150x150 in size or use this image -> “https://via.placeholder.com/150”) 
+
+1. Show at least 10 items on screen.
+
+4. On GridView the crossAxis count will be minimum 2.
+
