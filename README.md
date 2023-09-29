@@ -12,3 +12,4 @@ Create a dummy image feed that adjusts its layout based on the device's orientat
 
 4. On GridView the crossAxis count will be minimum 2.
 
+![Alt text](Screenshot_20230929-234905_flutter_live_test.png) ![Alt text](Screenshot_20230929-234913_flutter_live_test.png)
