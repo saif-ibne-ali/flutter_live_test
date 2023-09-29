@@ -8,9 +8,12 @@ class ProtraitView extends StatelessWidget {
     return ListView.builder(
       itemCount: 10,
       itemBuilder: (context, int index) {
-        return Container(
-          padding: const EdgeInsets.all(5),
-          color: Colors.green,
+        return SizedBox(
+          height: 150,
+          child: Card(
+            margin: const EdgeInsets.all(10),
+            child: Image.network("https://via.placeholder.com/150"),
+          ),
         );
       },
     );
@@ -22,8 +25,18 @@ class LandscapeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView(
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2));
+    return GridView.builder(
+      itemCount: 10,
+      gridDelegate:
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+      itemBuilder: (BuildContext context, int index) {
+        return Card(
+          margin: const EdgeInsets.all(10),
+          child: Align(
+              alignment: Alignment.topCenter,
+              child: Image.network("https://via.placeholder.com/150")),
+        );
+      },
+    );
   }
 }
