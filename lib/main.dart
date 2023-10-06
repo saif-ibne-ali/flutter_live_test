@@ -31,10 +31,16 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final List<String> buttonText = ["S", "M", "L", "XL", "XXL", "XXXL"];
   String selected = "S";
+
   selectedSize(String size) {
     setState(() {
       selected = size;
     });
+  }
+
+  mySnackBar(message, context) {
+    return ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(message)));
   }
 
   @override
@@ -63,6 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       : Colors.grey),
               onPressed: () {
                 selectedSize(buttonText[index]);
+                mySnackBar(buttonText[index], context);
               },
               child: Text(
                 buttonText[index],
