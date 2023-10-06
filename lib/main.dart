@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_live_test/view.dart';
+//import 'package:flutter_live_test/view.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,15 +13,29 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(),
+          primarySwatch: Colors.blue,
+          textTheme:
+              Theme.of(context).textTheme.apply(bodyColor: Colors.white)),
+      home: const HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  final List<String> buttonText = ["S", "M", "L", "XL", "XXL", "XXXL"];
+  String selected = "S";
+  selectedSize(String size) {
+    setState(() {
+      selected = size;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +44,33 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Size Selector"),
         centerTitle: true,
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [Expanded(child: Button()), const Text("hi")],
+      body: Container(
+        padding: const EdgeInsets.all(10.0),
+        alignment: Alignment.center,
+        child: GridView.builder(
+          shrinkWrap: true,
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 4,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              childAspectRatio: 2),
+          itemCount: buttonText.length,
+          itemBuilder: (BuildContext context, int index) {
+            return ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                  backgroundColor: selected == buttonText[index]
+                      ? Colors.orange
+                      : Colors.grey),
+              onPressed: () {
+                selectedSize(buttonText[index]);
+              },
+              child: Text(
+                buttonText[index],
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+            );
+          },
+        ),
       ),
     );
   }
