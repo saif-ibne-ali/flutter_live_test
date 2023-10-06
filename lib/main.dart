@@ -27,25 +27,13 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("News Feed"),
+        title: const Text("Size Selector"),
+        centerTitle: true,
       ),
-      body: Container(
-        color: Colors.white10,
-        child: OrientationBuilder(
-          builder: (context, orientation) {
-            if (orientation == Orientation.portrait) {
-              return const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: ProtraitView(),
-              );
-            } else {
-              return const Padding(
-                padding: EdgeInsets.all(5.0),
-                child: LandscapeView(),
-              );
-            }
-          },
-        ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [Expanded(child: Button()), const Text("hi")],
       ),
     );
   }

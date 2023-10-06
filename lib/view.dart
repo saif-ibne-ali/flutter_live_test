@@ -1,40 +1,27 @@
 import 'package:flutter/material.dart';
 
-class ProtraitView extends StatelessWidget {
-  const ProtraitView({super.key});
+class Button extends StatelessWidget {
+  Button({super.key});
 
-  @override
-  Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (context, int index) {
-        return SizedBox(
-          height: 150,
-          child: Card(
-            margin: const EdgeInsets.all(10),
-            child: Image.network("https://via.placeholder.com/150"),
-          ),
-        );
-      },
-    );
-  }
-}
-
-class LandscapeView extends StatelessWidget {
-  const LandscapeView({super.key});
+  final List<String> buttonText = ["S", "M", "L", "XL", "XXL", "XXXL"];
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: 10,
+      itemCount: 6,
       gridDelegate:
-          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
       itemBuilder: (BuildContext context, int index) {
-        return Card(
-          margin: const EdgeInsets.all(10),
-          child: Align(
-              alignment: Alignment.topCenter,
-              child: Image.network("https://via.placeholder.com/150")),
+        return SizedBox(
+          width: 100,
+          height: 50,
+          child: ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.black12,
+            ),
+            onPressed: () {},
+            child: Text(buttonText[index]),
+          ),
         );
       },
     );
