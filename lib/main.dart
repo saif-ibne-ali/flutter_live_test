@@ -1,83 +1,84 @@
 import 'package:flutter/material.dart';
-//import 'package:flutter_live_test/view.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Selectable List',
       theme: ThemeData(
-          primarySwatch: Colors.blue,
-          textTheme:
-              Theme.of(context).textTheme.apply(bodyColor: Colors.white)),
-      home: const HomeScreen(),
+        primarySwatch: Colors.blue,
+      ),
+      home: const SelectableListScreen(),
     );
   }
 }
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class SelectableListScreen extends StatefulWidget {
+  const SelectableListScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  SelectableListScreenState createState() => SelectableListScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final List<String> buttonText = ["S", "M", "L", "XL", "XXL", "XXXL"];
-  String selected = "S";
+class SelectableListScreenState extends State<SelectableListScreen> {
+  List<String> items = ["Item 1", "Item 2", "Item 3", "Item 4", "Item 5"];
+  List<bool> selected = [false, false, false, false, false];
 
-  selectedSize(String size) {
-    setState(() {
-      selected = size;
-    });
-  }
-
-  mySnackBar(message, context) {
-    return ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text(message)));
-  }
+  int selectedCount = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Size Selector"),
-        centerTitle: true,
+        title: const Text('Selection Screen'),
+        backgroundColor: Colors.blue,
+        elevation: 30,
       ),
-      body: Container(
-        padding: const EdgeInsets.all(10.0),
-        alignment: Alignment.center,
-        child: GridView.builder(
-          shrinkWrap: true,
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 4,
-              mainAxisSpacing: 10,
-              crossAxisSpacing: 10,
-              childAspectRatio: 2),
-          itemCount: buttonText.length,
-          itemBuilder: (BuildContext context, int index) {
-            return ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: selected == buttonText[index]
-                      ? Colors.orange
-                      : Colors.grey),
-              onPressed: () {
-                selectedSize(buttonText[index]);
-                mySnackBar(buttonText[index], context);
-              },
-              child: Text(
-                buttonText[index],
-                style: Theme.of(context).textTheme.titleLarge,
-              ),
-            );
-          },
-        ),
+      body: ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (BuildContext context, int index) {
+          return ListTile(
+            title: Text(items[index]),
+            selected: selected[index],
+            selectedTileColor: Colors.blue,
+            onTap: () {
+              setState(() {
+                selected[index] = !selected[index];
+                if (selected[index]) {
+                  selectedCount++;
+                } else {
+                  selectedCount--;
+                }
+              });
+            },
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                title: const Text('Selected Items'),
+                content: Text('Number of selected items: $selectedCount'),
+                actions: <Widget>[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: const Text('Close'),
+                  ),
+                ],
+              );
+            },
+          );
+        },
+        child: const Icon(Icons.check),
       ),
     );
   }
